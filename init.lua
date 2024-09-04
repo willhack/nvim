@@ -449,6 +449,25 @@ require('lazy').setup({
 vim.api.nvim_set_hl(0, 'TreesitterContextBottom', { underline = true })
 vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = 'none' })
 
+DiagnosticLevel = function(level)
+  return not vim.tbl_isempty(vim.diagnostic.get(0, { severity = vim.diagnostic.severity[level] }))
+end
+vim.api.nvim_create_autocmd({ 'DiagnosticChanged' }, {
+  desc = 'Change Filename color based on linter',
+  callback = function()
+    local level = 'clear'
+    if DiagnosticLevel 'ERROR' then
+      level = 'DiagnosticVirtualTextError'
+    elseif DiagnosticLevel 'WARN' then
+      level = 'DiagnosticVirtualTextWarn'
+    elseif DiagnosticLevel 'INFO' then
+      level = 'DiagnosticVirtualTextInfo'
+    elseif DiagnosticLevel 'HINT' then
+      level = 'DiagnosticVirtualTextHint'
+    end
+    vim.cmd('hi! link MiniStatuslineFilename ' .. level)
+  end,
+})
 vim.cmd [[colorscheme catppuccin]]
 
 -- Exploooore

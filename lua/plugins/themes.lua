@@ -38,11 +38,5 @@ local themes = {
     priority = 1000,
     opts = { transparent_background = true },
   },
-  {
-    'lunarvim/synthwave84.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = { glow = { operator = true } },
-  },
 }
 return themes
