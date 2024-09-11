@@ -7,25 +7,11 @@ local themes = {
     end,
   },
   {
-    'scottmckendry/cyberdream.nvim',
+    'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    config = function()
-      require('cyberdream').setup {
-        transparent = true,
-        borderless_telescope = false,
-        italic_comments = true,
-        extensions = {
-          lazy = true,
-          gitsigns = true,
-          mini = true,
-          whichkey = true,
-          telescope = true,
-        },
-      }
-    end,
+    opts = { transparent = true },
   },
-  { 'rebelot/kanagawa.nvim', opts = { transparent = true } },
   {
     'eldritch-theme/eldritch.nvim',
     lazy = false,

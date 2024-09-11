@@ -147,7 +147,7 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.cmd [[set wildignore+=kanagawa-lotus.vim,vim.lua,minicyan.lua,minischeme.lua,randomhue.lua,blue.vim,darkblue.vim,delek.vim,desert.vim,elflord.vim,evening.vim,habamax.vim,industry.vim,koehler.vim,lunaperche.vim,morning.vim,murphy.vim,pablo.vim,peachpuff.vim,quiet.vim,retrobox.vim,ron.vim,shine.vim,slate.vim,sorbet.vim,torte.vim,vim.vim,wildcharm.vim,zaibatsu.vim,zellner.vim]]
+vim.cmd [[set wildignore+=vim.lua,minicyan.lua,minischeme.lua,randomhue.lua,blue.vim,darkblue.vim,delek.vim,desert.vim,elflord.vim,evening.vim,habamax.vim,industry.vim,koehler.vim,lunaperche.vim,morning.vim,murphy.vim,pablo.vim,peachpuff.vim,quiet.vim,retrobox.vim,ron.vim,shine.vim,slate.vim,sorbet.vim,torte.vim,vim.vim,wildcharm.vim,zaibatsu.vim,zellner.vim]]
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -321,7 +321,12 @@ require('lazy').setup({
       local servers = {
         clangd = {},
         rust_analyzer = {},
-        tsserver = {},
+        ts_ls = {},
+        eslint = {
+          settings = {
+            workingDirectories = { mode = 'auto' },
+          },
+        },
         vim.diagnostic.config { update_in_insert = true },
         lua_ls = {
           settings = {
@@ -349,10 +354,9 @@ require('lazy').setup({
       require('mason-lspconfig').setup {
         opts = {
           servers = {
-            tsserver = {
+            ts_ls = {
               enable = false,
             },
-            vtsls = {},
           },
         },
         handlers = {
@@ -360,7 +364,7 @@ require('lazy').setup({
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
+            -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
