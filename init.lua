@@ -49,6 +49,7 @@ vim.opt.clipboard = 'unnamedplus'
 
 vim.opt.breakindent = true
 vim.opt.linebreak = true
+vim.opt.cindent.shiftwidth = 2
 
 -- [[ Setting options ]]
 -- Save undo history
@@ -370,11 +371,7 @@ require('lazy').setup({
 
       require('mason-lspconfig').setup {
         opts = {
-          servers = {
-            ts_ls = {
-              enable = false,
-            },
-          },
+          servers = {},
         },
         handlers = {
           function(server_name)
@@ -427,7 +424,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'rust', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'css', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'rust', 'vim', 'vimdoc' },
       auto_install = true,
       highlight = {
         enable = true,
