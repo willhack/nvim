@@ -48,6 +48,7 @@ vim.opt.showmode = false
 vim.opt.clipboard = 'unnamedplus'
 
 vim.opt.breakindent = true
+vim.opt.linebreak = true
 
 -- [[ Setting options ]]
 -- Save undo history
@@ -273,6 +274,17 @@ require('lazy').setup({
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+          vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+            border = 'rounded',
+            close_events = { 'BufHidden', 'InsertLeave' },
+          })
+          vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+            border = 'rounded',
+          })
+          vim.diagnostic.config {
+            float = { border = 'rounded' },
+          }
+
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
@@ -319,7 +331,8 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        clangd = {},
+        astro = {},
+        cpplint = {},
         rust_analyzer = {},
         ts_ls = {},
         eslint = {
@@ -341,7 +354,11 @@ require('lazy').setup({
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
       --    :Mason
-      require('mason').setup()
+      require('mason').setup {
+        ui = {
+          border = 'rounded',
+        },
+      }
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
@@ -448,6 +465,7 @@ require('lazy').setup({
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {},
+    border = 'rounded',
   },
 })
 vim.api.nvim_set_hl(0, 'TreesitterContextBottom', { underline = true })
