@@ -88,6 +88,8 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.opt.softtabstop = 2
+
 -- Spellcheck
 vim.o.spelllang = 'en_us'
 vim.o.spelloptions = 'camel'
@@ -424,7 +426,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'css', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'rust', 'vim', 'vimdoc' },
+      ensure_installed = { 'astro', 'bash', 'c', 'css', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'rust', 'vim', 'vimdoc' },
       auto_install = true,
       highlight = {
         enable = true,
@@ -496,3 +498,5 @@ vim.keymap.set('n', '<leader>gc', function()
 end, { silent = true, desc = 'Go to [C]ontext' })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+vim.keymap.set('n', '<leader>j', ':! bun % <cr>', { desc = '[J]S run' })

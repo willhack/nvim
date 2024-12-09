@@ -3,6 +3,10 @@ return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
   {
+    'brenoprata10/nvim-highlight-colors',
+    opts = {},
+  },
+  {
     'ahmedkhalf/project.nvim',
     config = function()
       require('project_nvim').setup {}
