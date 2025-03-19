@@ -3,5 +3,6 @@
 -- Add any additional keymaps here
 
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>pv", ":Ex<cr>", { desc = "[P]roject [V]iew" })
+vim.keymap.set("n", "<leader>pv", ":Oil<cr>", { desc = "[P]roject [V]iew" })
 vim.keymap.set("n", "<leader>j", ":! bun % <cr>", { desc = "[J]S run" })
+vim.keymap.set("n", "<leader>f.", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), { desc = "Recent (cwd)" })
