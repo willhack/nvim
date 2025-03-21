@@ -1,9 +1,8 @@
 return {
-  { "folke/trouble.nvim", enabled = false },
+  -- { "folke/trouble.nvim", enabled = false },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   { "catppuccin", enabled = false },
   { "brenoprata10/nvim-highlight-colors", opts = {} },
-  { "EdenEast/nightfox.nvim" },
   {
     "davidmh/mdx.nvim",
     config = true,
@@ -14,7 +13,6 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
     opts = {},
   },
-  { "xiyaowong/transparent.nvim" },
   {
     "neovim/nvim-lspconfig",
     opts = {
