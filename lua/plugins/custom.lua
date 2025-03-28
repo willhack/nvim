@@ -1,17 +1,23 @@
 return {
-  -- { "folke/trouble.nvim", enabled = false },
+  {
+    "stevearc/oil.nvim",
+    lazy = false,
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    opts = {
+      default_file_explorer = true,
+      -- view_options = {
+      --   show_hidden = true,
+      -- },
+    },
+  },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   { "catppuccin", enabled = false },
   { "brenoprata10/nvim-highlight-colors", opts = {} },
   {
     "davidmh/mdx.nvim",
     config = true,
+    lazy = true,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-    opts = {},
   },
   {
     "neovim/nvim-lspconfig",
@@ -33,7 +39,6 @@ return {
     },
   },
   {
-
     "folke/snacks.nvim",
     opts = {
       indent = {
@@ -59,11 +64,5 @@ return {
       },
       keymap = { preset = "default" },
     },
-  },
-  {
-    "stevearc/oil.nvim",
-    opts = {},
-    dependencies = { { "echasnovski/mini.icons", opts = {} } },
-    lazy = false,
   },
 }
